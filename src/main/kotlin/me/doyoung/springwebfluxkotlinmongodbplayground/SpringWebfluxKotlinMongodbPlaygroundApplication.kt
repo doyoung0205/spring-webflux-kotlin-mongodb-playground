@@ -1,5 +1,6 @@
 package me.doyoung.springwebfluxkotlinmongodbplayground
 
+import me.doyoung.springwebfluxkotlinmongodbplayground.greeting.GreetingClient
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
@@ -7,5 +8,7 @@ import org.springframework.boot.runApplication
 class SpringWebfluxKotlinMongodbPlaygroundApplication
 
 fun main(args: Array<String>) {
-    runApplication<SpringWebfluxKotlinMongodbPlaygroundApplication>(*args)
+    val applicationContext = runApplication<SpringWebfluxKotlinMongodbPlaygroundApplication>(*args)
+    val greetingClient = applicationContext.getBean(GreetingClient::class.java)
+    println(">> message = " + greetingClient.getMessage().block());
 }
